@@ -5,18 +5,18 @@
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Register</legend>
-                <div id=uname class="form-group">
-                    {{ form.username.label(id="uname") }}
+                <div class="form-group">
+                    {{ form.uname.label(class="form-control-label")}}
 
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
+                    {% if form.uname.errors %}
+                        {{ form.uname(class="form-control form-control-lg is-invalid") }}
+                        <div id="success" class="invalid-feedback">
+                            {% for error in form.uname.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
+                        {{ form.uname(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
                 <div id=pword class="form-group">

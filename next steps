@@ -1,0 +1,5 @@
+-Take text from textarea on spell_check page
+-write text to a local file
+-call the spell check a.out binary and pass the user's text file and dictionary wordlist
+-take output from the spell check binary
+-display output to the spell_check web page

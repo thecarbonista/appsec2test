@@ -10,6 +10,10 @@ from flask_login import login_user, current_user, logout_user, login_required
 @login_required
 def spell_check():
     form = ContentForm()
+    if form.validate_on_submit():
+        text_file = open(r"usertext.txt", "w+")
+        text_file.write(form.body.data)
+        text_file.close()
     return render_template('spell_check.html', form=form)
 
 @app.route("/register", methods=['GET', 'POST'])

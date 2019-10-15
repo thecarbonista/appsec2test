@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Create Post{% endblock %}
+{% block content %}
+<H3>Secure Spell Check</H3>
+<form action="" method=post>
+   {{form.hidden_tag()}}
+   <dl>
+      <dt>Paste text to spell check.
+      <dd>{{ form.body(cols="35", rows="20") }}}
+   </dl>
+   <p>
+      <input type=submit value="Spell Check">
+</form>
+{% endblock %}

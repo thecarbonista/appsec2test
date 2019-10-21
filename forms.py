@@ -28,6 +28,8 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+
+
 class ContentForm(FlaskForm):
     body = StringField(u'Text', widget=TextArea())
     submit = SubmitField('Spell Check')

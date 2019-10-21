@@ -25,12 +25,10 @@
                         <div class="invalid-feedback">
                             {% for error in form.password.errors %}
                                 <span>{{ error }}</span>
-                                <p id="success">{{ failure}}</p>
                             {% endfor %}
                         </div>
                     {% else %}
                         {{ form.password(class="form-control form-control-lg") }}
-                        <p id="success">{{ success}}</p>
                     {% endif %}
                 </div>
                 <div class="form-group">

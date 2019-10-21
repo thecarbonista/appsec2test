@@ -43,6 +43,11 @@
                     {% else %}
                         {{ form.twofactor(class="form-control form-control-lg") }}
                     {% endif %}
+                    <div class="flashes">
+                        {% for message in get_flashed_messages()%}
+                             {{ message|safe }}
+                             {% endfor %}
+                    </div>
                 </div>
                 <div class="form-check">
                     {{ form.remember(class="form-check-input") }}

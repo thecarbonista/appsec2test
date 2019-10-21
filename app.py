@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, Markup
 from . import app, db, bcrypt
 from .forms import RegistrationForm, LoginForm, ContentForm
 from .models import User
@@ -47,9 +47,14 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.twofactor == form.twofactor.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
+            message = Markup('<p id="result">{{ success}}</p>')
+            flash(message)
             return redirect(next_page) if next_page else redirect(url_for('spell_check'))
         else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+            message = Markup('<p id="result">{{ failure}}</p>')
+            flash(message)
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+
     return render_template('login.html', title='Login', form=form)
 
 

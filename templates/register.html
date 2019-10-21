@@ -1,144 +1,84 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
     <div class="content-section">
-
         <form method="POST" action="">
-
             {{ form.hidden_tag() }}
-
+            <p id="uname"></p>
             <fieldset class="form-group">
-
                 <legend class="border-bottom mb-4">Register</legend>
-
                 <div id=uname class="form-group">
-
                     {{ form.username.label(id="uname") }}
-
-
                     {% if form.username.errors %}
-
                         {{ form.username(class="form-control form-control-lg is-invalid") }}
-
                         <div class="invalid-feedback">
-
                             {% for error in form.username.errors %}
-
                                 <span>{{ error }}</span>
-
+                                <p id="success">{{ "failure"}}</p>
                             {% endfor %}
-
                         </div>
-
                     {% else %}
-
                         {{ form.username(class="form-control form-control-lg") }}
+                        <p id="success">{{ "success"}}</p>
 
                     {% endif %}
-
                 </div>
-
                 <div id=pword class="form-group">
-
+                    <p id="pword"></p>
                     {{ form.password.label(class="form-control-label") }}
-
                     {% if form.password.errors %}
-
                         {{ form.password(class="form-control form-control-lg is-invalid") }}
-
                         <div class="invalid-feedback">
-
                             {% for error in form.password.errors %}
-
                                 <span>{{ error }}</span>
+                                <p id="success">{{ "failure"}}</p>
 
                             {% endfor %}
-
                         </div>
-
                     {% else %}
-
                         {{ form.password(class="form-control form-control-lg") }}
+                        <p id="success">{{ "success"}}</p>
 
                     {% endif %}
-
                 </div>
-
                 <div id=pword class="form-group">
-
                     {{ form.confirm_password.label(class="form-control-label") }}
-
                     {% if form.confirm_password.errors %}
-
                         {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-
                         <div class="invalid-feedback">
-
                             {% for error in form.confirm_password.errors %}
-
                                 <span>{{ error }}</span>
-
                             {% endfor %}
-
                         </div>
-
                     {% else %}
-
                         {{ form.confirm_password(class="form-control form-control-lg") }}
-
                     {% endif %}
-
                 </div>
-
                 <div class="form-group">
-
                     {{ form.twofactor.label(class="form-control-label") }}
-
-
                     {% if form.twofactor.errors %}
-
                         {{ form.twofactor(class="form-control form-control-lg is-invalid") }}
-
                         <div class="invalid-feedback">
-
                             {% for error in form.twofactor.errors %}
-
                                 <span>{{ error }}</span>
-
                             {% endfor %}
-
                         </div>
 
                     {% else %}
-
                         {{ form.twofactor(class="form-control form-control-lg") }}
-
                     {% endif %}
 
                 </div>
-
-
             </fieldset>
-
             <div class="form-group">
-
                 {{ form.submit(class="btn btn-outline-info") }}
-
             </div>
-
         </form>
 
     </div>
-
     <div class="border-top pt-3">
-
         <small class="text-muted">
-
             Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
-
         </small>
-
     </div>
-
 {% endblock content %}

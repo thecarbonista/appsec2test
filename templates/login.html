@@ -3,6 +3,8 @@
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
+                    <p id="uname"></p>
+
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Log In</legend>
                 <div id=uname class="form-group">
@@ -13,10 +15,14 @@
                         <div class="invalid-feedback">
                             {% for error in form.username.errors %}
                                 <span>{{ error }}</span>
+                                                                <p id="success">{{ "failure"}}</p>
+
                             {% endfor %}
                         </div>
                     {% else %}
                         {{ form.username(class="form-control form-control-lg") }}
+                                                        <p id="success">{{ "success"}}</p>
+
                     {% endif %}
                 </div>
                 <div id=pword class="form-group">

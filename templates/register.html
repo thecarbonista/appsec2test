@@ -5,7 +5,7 @@
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Register</legend>
-                <div id=uname class="form-group">
+                <div class="form-group">
                     {{ form.username.label(id="uname") }}
 
                     {% if form.username.errors %}
@@ -17,9 +17,10 @@
                         </div>
                     {% else %}
                         {{ form.username(class="form-control form-control-lg") }}
+                         <p id="uname">{{ uname}}</p>
                     {% endif %}
                 </div>
-                <div id=pword class="form-group">
+                <div class="form-group">
                     {{ form.password.label(class="form-control-label") }}
                     {% if form.password.errors %}
                         {{ form.password(class="form-control form-control-lg is-invalid") }}
@@ -30,9 +31,10 @@
                         </div>
                     {% else %}
                         {{ form.password(class="form-control form-control-lg") }}
+                         <p id="pword">{{ pword}}</p>
                     {% endif %}
                 </div>
-                <div id=pword class="form-group">
+                <div class="form-group">
                     {{ form.confirm_password.label(class="form-control-label") }}
                     {% if form.confirm_password.errors %}
                         {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
@@ -57,6 +59,7 @@
                         </div>
                     {% else %}
                         {{ form.twofactor(class="form-control form-control-lg") }}
+                         <p id="2fa">{{ 2fa}}</p>
                     {% endif %}
                 </div>
 

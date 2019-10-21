@@ -6,9 +6,14 @@
    {{form.hidden_tag()}}
    <dl>
       <dt>Paste text to spell check.
-      <dd>{{ form.body(cols="35", rows="20") }}}
+      <dd>{{ form.body(cols="35", rows="20") }}
    </dl>
    <p>
       <input type=submit value="Spell Check">
+    {% for content in content%}
+        <pre>
+            {{ content }}
+        </pre>
+    {% endfor %}
 </form>
 {% endblock %}

@@ -3,8 +3,7 @@ from . import app, db, bcrypt
 from .forms import RegistrationForm, LoginForm, ContentForm
 from .models import User
 from flask_login import login_user, current_user, logout_user, login_required
-
-
+import subprocess
 
 @app.route("/spell_check", methods=['GET', 'POST'])
 @login_required
@@ -18,6 +17,8 @@ def spell_check():
             content = file.read()
         text_file.close()
 
+    f = open("results.txt", "w")
+    subprocess.call(["./a.out", "./usertext.txt", "./wordlist.txt"], stdout=f)
     return render_template('spell_check.html', form=form, content=content)
 
 @app.route("/register", methods=['GET', 'POST'])

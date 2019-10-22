@@ -36,9 +36,11 @@ def register():
         user = User(username=form.username.data, password=hashed_password, twofactor=twofactor)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
+        success_message = 'Success! Your account has been created. Please log in!'
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    else:
+        success_message = 'Failure! Your account has not been created. Does this account already exist?'
+    return render_template('register.html', title='Register', form=form,  success=success_message)
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -52,13 +54,10 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.twofactor == form.twofactor.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            message = Markup('<p id="result">{{ success}}</p>')
-            flash(message)
+            success_message = 'Success'
             return redirect(next_page) if next_page else redirect(url_for('spell_check'))
         else:
-            message = Markup('<p id="result">{{ failure}}</p>')
-            flash(message)
-            flash('Login Unsuccessful. Please check username and password', 'danger')
+            success_message = 'Failure'
 
     return render_template('login.html', title='Login', form=form)
 

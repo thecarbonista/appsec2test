@@ -6,3 +6,19 @@
 ./a.out usertext.txt wordlist.txt > results.txt
 
 -display output to the spell_check web page
+
+
+success_message = 'Success! Your account has been created! You are now able to log in' # in the case of success
+... # other things
+success_message = 'Failure! Your account has not been created. Does this account already exist?' # in case of failure.
+... # other things
+success_message = None # In the case of a get, not a post.
+... # do other things
+return render_template("register.html", form=form, success=success_message)
+
+
+{% success %}
+<p id="success">{{ success }}</p>
+{% endif %}
+
+return redirect(next_page) if next_page else redirect(url_for('spell_check'))

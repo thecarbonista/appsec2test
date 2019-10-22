@@ -28,6 +28,7 @@ def spell_check():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
+        success_message = 'Success! Your account has been created. Please log in!'
         return redirect(url_for('spell_check'))
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -40,6 +41,7 @@ def register():
         return redirect(url_for('login'))
     else:
         success_message = 'Failure! Your account has not been created. Does this account already exist?'
+
     return render_template('register.html', title='Register', form=form,  success=success_message)
 
 
@@ -47,19 +49,20 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+        success_message = 'Success! Your account has been created. Please log in!'
         return redirect(url_for('spell_check'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.twofactor == form.twofactor.data):
             login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
             success_message = 'Success'
-            return redirect(next_page) if next_page else redirect(url_for('spell_check'))
+            return redirect(url_for('spell_check'))
         else:
             success_message = 'Failure'
-
-    return render_template('login.html', title='Login', form=form)
+    if request.method == 'GET':
+        success_message = ''
+    return render_template('login.html', title='Login', form=form, result=success_message)
 
 
 @app.route("/logout")

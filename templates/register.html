@@ -49,6 +49,9 @@
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
+                {% if success %}
+                <p id="success">{{ success }}</p>
+                {% endif %}
             </div>
 
         </form>
@@ -61,6 +64,4 @@
     </div>
 {% endblock content %}
 
-{% if success %}
-<p id="success">{{ success }}</p>
-{% endif %}
+

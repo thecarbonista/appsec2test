@@ -1,19 +1,28 @@
 {% extends "layout.html" %}
-{% block title %}Create Post{% endblock %}
 {% block content %}
 <H3>Secure Spell Check</H3>
 <form action="" method=post>
    {{form.hidden_tag()}}
+    <div style="float: left;">
    <dl>
       <dt>Paste text to spell check.
-      <dd>{{ form.body(cols="35", rows="20") }}
+      <dd>{{ form.body(cols="30", rows="20") }}
    </dl>
    <p>
-      <input type=submit value="Spell Check">
-    {% for content in content%}
-        <pre>
-            {{ content }}
-        </pre>
-    {% endfor %}
+        <input type=submit value="Spell Check">
+    </div>
+
+
+    <div style="float: right;">
+<dl>
+      <dt>Spell Check Results
+          <object data="../results.txt" type="text/plain"
+width="500" style="height: 300px">
+<a href="../results.txt" ></a>
+</object>
+   </dl>
+   <p>
+</div>
+
 </form>
 {% endblock %}

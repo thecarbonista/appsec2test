@@ -33,4 +33,5 @@ class LoginForm(FlaskForm):
 class ContentForm(FlaskForm):
     body = StringField(u'Text', widget=TextArea())
     submit = SubmitField('Spell Check')
+    body1 = StringField(u'Text', widget=TextArea())
 

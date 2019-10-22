@@ -9,7 +9,7 @@ import subprocess
 @login_required
 def spell_check():
     form = ContentForm()
-    content = ''
+
     if form.validate_on_submit():
         text_file = open(r"usertext.txt", "w+")
         text_file.write(form.body.data)
@@ -17,9 +17,13 @@ def spell_check():
             content = file.read()
         text_file.close()
 
-    f = open("results.txt", "w")
-    subprocess.call(["./a.out", "./usertext.txt", "./wordlist.txt"], stdout=f)
-    return render_template('spell_check.html', form=form, content=content)
+        f = open("../results.txt", "w")
+        subprocess.call(["./a.out", "./usertext.txt", "./wordlist.txt"], stdout=f)
+        f.close()
+        return redirect(url_for('spell_check'))
+    return render_template('spell_check.html', title='Spell Check', form=form)
+
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

@@ -57,6 +57,9 @@
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
             </div>
+            {% if result %}
+            <p id="result">{{ result }}</p>
+            {% endif %}
         </form>
     </div>
     <div class="border-top pt-3">
@@ -66,6 +69,4 @@
     </div>
 {% endblock content %}
 
-{% if result %}
-<p id="result">{{ result }}</p>
-{% endif %}
+

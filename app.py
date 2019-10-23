@@ -31,7 +31,7 @@ def register():
         success_message = 'Success! Your account has been created. Please log in!'
         return redirect(url_for('spell_check'))
     form = RegistrationForm()
-    if request.method == 'POST'
+    if request.method == 'POST':
         if form.validate_on_submit():
             hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
             twofactor = form.twofactor.data

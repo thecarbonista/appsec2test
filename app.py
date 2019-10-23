@@ -13,11 +13,9 @@ def spell_check():
     if form.validate_on_submit():
         text_file = open(r"usertext.txt", "w+")
         text_file.write(form.body.data)
-        with open("usertext.txt", "r") as file:
-            content = file.read()
         text_file.close()
 
-        f = open("../results.txt", "w")
+        f = open("results.txt", "w")
         subprocess.call(["./a.out", "./usertext.txt", "./wordlist.txt"], stdout=f)
         f.close()
         return redirect(url_for('spell_check'))

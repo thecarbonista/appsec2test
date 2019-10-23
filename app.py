@@ -9,17 +9,20 @@ import subprocess
 @login_required
 def spell_check():
     form = ContentForm()
+    content = 'Results will display here'
 
     if form.validate_on_submit():
         text_file = open(r"usertext.txt", "w+")
         text_file.write(form.body.data)
         text_file.close()
 
-        f = open("results.txt", "w")
+        f = open("results.txt", "w+")
         subprocess.call(["./a.out", "./usertext.txt", "./wordlist.txt"], stdout=f)
+        content = f.read()
         f.close()
-        return redirect(url_for('spell_check'))
-    return render_template('spell_check.html', title='Spell Check', form=form)
+
+        return redirect(url_for('spell_check', text=content))
+    return render_template('spell_check.html', title='Spell Check', form=form, text=content)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

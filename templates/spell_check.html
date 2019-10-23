@@ -3,26 +3,24 @@
 <H3>Secure Spell Check</H3>
 <form action="" method=post>
    {{form.hidden_tag()}}
-    <div style="float: left;">
+    <div style="float: top;">
    <dl>
       <dt>Paste text to spell check.
-
-
-       <dd><p id="inputtext">{{ form.body(cols="30", rows="20") }}</p>
+       <dd><p id="inputtext">{{ form.body(cols="100", rows="8") }}</p>
    </dl>
-   <p>
-        <input type=submit value="Spell Check">
+   <p>        <input type=submit value="Spell Check">
     </div>
+    <div style="float: bottom;">
+        <dl>
+            <dt>Spell Check Results
+            <dd><p>
+            {% if result %}
+            <p id="output">{{ text }}</p>
+            {% endif %}
+        </dl>
 
 
-    <div style="float: right;">
-<dl>
-      <dt>Spell Check Results
-          <object data="../results.txt" type="text/plain"
-width="500" style="height: 300px">
-<a href="../results.txt" ></a>
-</object>
-   </dl>
+
 
 </div>
 

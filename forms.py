@@ -23,7 +23,6 @@ class LoginForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Password', id='pword', validators=[DataRequired()])
     twofactor = StringField('Two Factor', id='2fa', validators=[DataRequired(), Length(10)])
-    remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
 

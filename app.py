@@ -23,12 +23,10 @@ def spell_check():
         return redirect(url_for('spell_check'))
     return render_template('spell_check.html', title='Spell Check', form=form)
 
-
-
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        success_message = 'Success! Your account has been created. Please log in!'
+        success_message = 'Success'
         return redirect(url_for('spell_check'))
     form = RegistrationForm()
     if request.method == 'POST':
@@ -38,8 +36,8 @@ def register():
             user = User(username=form.username.data, password=hashed_password, twofactor=twofactor)
             db.session.add(user)
             db.session.commit()
-            success_message = 'Success'
-            return redirect(url_for('login'))
+            success_message = 'Success, account created'
+            return render_template('register.html', title='Register', form=form, success=success_message)
         else:
             success_message = 'Failure'
     else:
@@ -58,7 +56,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.twofactor == form.twofactor.data):
-            login_user(user, remember=form.remember.data)
+            login_user(user)
             success_message = 'Success'
             return redirect(url_for('spell_check'))
         else:

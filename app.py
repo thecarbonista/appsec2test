@@ -59,7 +59,7 @@ def login():
             success_message = 'Failure'
     if request.method == 'GET':
         success_message = ''
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, result=success_message)
 
 
 @app.route("/logout")

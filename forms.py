@@ -28,7 +28,7 @@ class LoginForm(FlaskForm):
 
 
 class ContentForm(FlaskForm):
-    body = StringField(u'Text', widget=TextArea())
+    body = StringField(u'Text', id='inputtext', widget=TextArea())
     submit = SubmitField('Spell Check')
-    body1 = StringField(u'Text', widget=TextArea())
+    body1 = StringField(u'Text', id='textout', widget=TextArea())
 

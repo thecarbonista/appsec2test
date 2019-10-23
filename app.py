@@ -49,7 +49,7 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        success_message = 'Success! Your account has been created. Please log in!'
+        success_message = 'Success'
         return redirect(url_for('spell_check', result=success_message))
     form = LoginForm()
     if form.validate_on_submit():
@@ -57,8 +57,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.twofactor == form.twofactor.data):
             login_user(user)
             success_message = 'Success'
-
-            return redirect(url_for('spell_check', result=success_message))
+            return render_template('spell_check.html', title='Spell Check', form=form, result=success_message)
         else:
             success_message = 'Failure'
     if request.method == 'GET':

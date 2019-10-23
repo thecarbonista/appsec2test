@@ -57,12 +57,13 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.twofactor == form.twofactor.data):
             login_user(user)
             success_message = 'Success'
-            return render_template('spell_check.html', title='Spell Check', form=form, result=success_message)
+            return redirect(url_for('spell_check', result=success_message))
         else:
             success_message = 'Failure'
     if request.method == 'GET':
         success_message = ''
-    return render_template('login.html', title='Login', form=form, result=success_message)
+        return redirect(url_for('login', result=success_message))
+    return render_template('login.html', title='Login', form=form)
 
 
 @app.route("/logout")

@@ -36,8 +36,7 @@ def register():
             user = User(username=form.username.data, password=hashed_password, twofactor=twofactor)
             db.session.add(user)
             db.session.commit()
-            success_message = 'Success, account created'
-            return redirect(url_for('login', success=success_message))
+            success_message = 'Success'
         else:
             success_message = 'Failure'
     else:

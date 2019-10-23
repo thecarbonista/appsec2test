@@ -31,16 +31,19 @@ def register():
         success_message = 'Success! Your account has been created. Please log in!'
         return redirect(url_for('spell_check'))
     form = RegistrationForm()
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        twofactor = form.twofactor.data
-        user = User(username=form.username.data, password=hashed_password, twofactor=twofactor)
-        db.session.add(user)
-        db.session.commit()
-        success_message = 'Success! Your account has been created. Please log in!'
-        return redirect(url_for('login'))
+    if request.method == 'POST'
+        if form.validate_on_submit():
+            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+            twofactor = form.twofactor.data
+            user = User(username=form.username.data, password=hashed_password, twofactor=twofactor)
+            db.session.add(user)
+            db.session.commit()
+            success_message = 'Success'
+            return redirect(url_for('login'))
+        else:
+            success_message = 'Failure'
     else:
-        success_message = 'Failure! Your account has not been created. Does this account already exist?'
+        success_message = ''
 
     return render_template('register.html', title='Register', form=form,  success=success_message)
 
